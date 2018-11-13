@@ -22,7 +22,7 @@ define asterisk::dotd (
   $manage_nullfile  = true,
 ) {
   include asterisk::install
-  include asterisk::service
+  include asterisk::reload_service
 
   $dirname = ["${name}.d"]
   $cf_file_name = "${name}.conf"
@@ -50,7 +50,7 @@ define asterisk::dotd (
     group   => 'asterisk',
     mode    => '0640',
     require => Class['asterisk::install'],
-    notify  => Class['asterisk::service'],
+    notify  => Class['asterisk::reload_service'],
   }
 
   if $content != '' {

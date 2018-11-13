@@ -7,12 +7,12 @@ class asterisk::service {
   $manage_service = $asterisk::manage_service
 
   if $manage_service {
-    service {$asterisk::service_name:
-      ensure  => running,
+    service { $asterisk::service_name:
+      ensure => 'running',
     }
   } else {
-    service {$asterisk::service_name:
-      enable  => false,
+    service { $asterisk::service_name:
+      enable => false,
     }
 
   }

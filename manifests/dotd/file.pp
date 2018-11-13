@@ -20,7 +20,7 @@ define asterisk::dotd::file (
   $filename = ''
 ) {
   include asterisk::config
-  include asterisk::service
+  include asterisk::reload_service
 
   if ($source == '') and ($content == '') {
     fail('You must supply a value for either one of $source or $content.')
@@ -40,7 +40,7 @@ define asterisk::dotd::file (
     group   => 'asterisk',
     mode    => '0640',
     require => Class['asterisk::config'],
-    notify  => Class['asterisk::service'],
+    notify  => Class['asterisk::reload_service'],
   }
 
   if $content != '' {
